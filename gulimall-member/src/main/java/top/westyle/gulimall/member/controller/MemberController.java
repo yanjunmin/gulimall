@@ -1,20 +1,17 @@
 package top.westyle.gulimall.member.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import top.westyle.gulimall.common.utils.PageUtils;
+import top.westyle.gulimall.common.utils.R;
+import top.westyle.gulimall.member.entity.MemberEntity;
+import top.westyle.gulimall.member.feign.CouponServer;
+import top.westyle.gulimall.member.service.MemberService;
+
 import java.util.Arrays;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import top.westyle.gulimall.member.entity.MemberEntity;
-import top.westyle.gulimall.member.service.MemberService;
-import top.westyle.gulimall.common.utils.PageUtils;
-import top.westyle.gulimall.common.utils.R;
 
 
 
@@ -31,6 +28,9 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
+    @Autowired
+    private CouponServer couponServer;
+
     /**
      * 列表
      */
@@ -40,6 +40,13 @@ public class MemberController {
         PageUtils page = memberService.queryPage(params);
 
         return R.ok().put("page", page);
+    }
+
+    @RequestMapping("/coupon/listall")
+    //@RequiresPermissions("member:member:list")
+    public R couponListAll(){
+        R r = couponServer.listAll();
+        return R.ok().put("all", r.get("list"));
     }
 
 

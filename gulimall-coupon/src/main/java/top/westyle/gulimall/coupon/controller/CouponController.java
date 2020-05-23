@@ -8,6 +8,7 @@ import top.westyle.gulimall.coupon.entity.CouponEntity;
 import top.westyle.gulimall.coupon.service.CouponService;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -37,6 +38,13 @@ public class CouponController {
         PageUtils page = couponService.queryPage(params);
 
         return R.ok().put("page", page);
+    }
+
+    @RequestMapping("/listall")
+    //@RequiresPermissions("coupon:coupon:list")
+    public R listAll(){
+        List<CouponEntity> list = couponService.list();
+        return R.ok().put("list", list);
     }
 
 
