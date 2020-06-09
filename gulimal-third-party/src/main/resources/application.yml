@@ -1,0 +1,11 @@
+server:
+  port: 30000
+
+spring:
+  cloud:
+    alicloud:
+      access-key: LTAI4G9xkKJ3hdmricibcTfM
+      secret-key: DqbVWsvKM0SqddCNJ8eNmP76s8dnTA
+      oss:
+        endpoint: oss-cn-chengdu-internal.aliyuncs.com
+        bucket: gulimall-yjm
