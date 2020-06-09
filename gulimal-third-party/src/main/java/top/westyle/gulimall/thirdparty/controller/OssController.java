@@ -42,7 +42,7 @@ public class OssController {
     @Value("${spring.cloud.alicloud.secret-key}")
     private String accessKey;
 
-    @RequestMapping("/oss/police")
+    @RequestMapping("/oss/policy")
     public R police(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String host = "https://" + bucket + "." + endpoint; // host的格式为 bucketname.endpoint
